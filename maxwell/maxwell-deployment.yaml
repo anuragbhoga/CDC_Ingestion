@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maxwell
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maxwell
+  template:
+    metadata:
+      labels:
+        app: maxwell
+    spec:
+      containers:
+      - name: maxwell
+        image: zendesk/maxwell:v1.37.0
+        volumeMounts:
+        - name: maxwell-config
+          mountPath: /config
+        args: ["--config", "/config/config.properties"]
+      volumes:
+      - name: maxwell-config
+        configMap:
+          name: maxwell-config
