@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maxwell
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maxwell
+  template:
+    metadata:
+      labels:
+        app: maxwell
+    spec:
+      containers:
+      - name: maxwell
+        image: zendesk/maxwell:v1.37.0
+        command: ["sh", "-c", "while true; do echo Maxwell running; sleep 3600; done"]

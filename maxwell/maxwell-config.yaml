@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: maxwell-config
+data:
+  config.properties: |
+    host=mysql
+    user=maxwell
+    password=maxwellpassword
+    schema_database=maxwell
+    kafka.bootstrap.servers=kafka:9092
+    kafka_topic=my-cdc-topic
